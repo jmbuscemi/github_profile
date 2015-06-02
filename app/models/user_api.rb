@@ -40,7 +40,7 @@ class UserApi
   end
 
   def number_following
-    following_link = @user_hash['following_url']
+    following_link = @user_hash['following_url'].split("{")[0].to_s
     array = HTTParty.get("#{following_link}",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
                 "User-Agent" => "jmbuscemi"})
@@ -48,7 +48,7 @@ class UserApi
   end
 
   def number_starred
-    starred_link = @user_hash['starred_url']
+    starred_link = @user_hash['starred_url'].split("{")[0].to_s
     array = HTTParty.get("#{starred_link}",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
                 "User-Agent" => "jmbuscemi"})
