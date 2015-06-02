@@ -3,8 +3,12 @@
 </div>
 
 <div>
-  <form method="POST" action="github_profile/show">
-    <input type="text" name="username" placeholder="Enter User Name" />
-    <button type="submit" name="button">Submit</button>
-  </form>
+  <%= form_tag("github_profile/show", method: "get") do %>
+    <div class="input">
+      <%= text_field_tag "username", nil, placeholder: "Enter Username" %>
+    </div>
+    <div class="button">
+      <%= submit_tag "Submit" %>
+    </div>
+  <% end %>
 </div>

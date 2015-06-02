@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get 'github_profile/index'
 
-  post 'github_profile/show'
+  get 'github_profile/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
