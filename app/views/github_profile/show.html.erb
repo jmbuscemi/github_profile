@@ -1,2 +1,139 @@
 <h1>Username =  <%= @username %></h1>
 <p>Real Name = <%= @real_name %></p>
+<p>userid = <%= @user_id %></p>
+<p>day = <%= @join_date.strftime("%b %e, %Y")%></p>
+<p>followers = <%= @followers %></p>
+<p>following = <%= @following %></p>
+<p>starred = <%= @starred %></p>
+
+<div class="wrapper">
+  <div class="header header-logged-in true" role="banner">
+    <div class="container clearfix">
+      <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+        <span class="mega-octicon octicon-mark-github"></span>
+      </a>
+      <div class="site-search  js-site-search" role="search">
+        <form accept-charset="UTF-8" action="/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+          <label class="js-chromeless-input-container form-control">
+          <div class="scope-badge">This repository</div>
+          <input type="text"
+            class="js-site-search-focus  chromeless-input"
+            data-hotkey="s"
+            name="q"
+            placeholder="Search GitHub"
+            data-global-scope-placeholder="Search GitHub"
+            data-repo-scope-placeholder="Search"
+            tabindex="1"
+            autocapitalize="off">
+          </label>
+        </form>
+      </div>
+      <ul class="header-nav left" role="navigation">
+        <li class="header-nav-item explore">
+          <a class="header-nav-link" href="/explore" data-ga-click="Header, go to explore, text:explore">Explore</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="https://gist.github.com" data-ga-click="Header, go to gist, text:gist">Gist</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="/blog" data-ga-click="Header, go to blog, text:blog">Blog</a>
+        </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="https://help.github.com" data-ga-click="Header, go to help, text:help">Help</a>
+        </li>
+      </ul>
+      <ul class="header-nav user-nav right" id="user-links">
+        <li class="header-nav-item dropdown js-menu-container">
+          <a class="header-nav-link name" href="/<%= @username %>" data-ga-click="Header, go to profile, text:username">
+            <img alt="@<%= @username %>" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/<%= @user_id %>?v=3&amp;s=40" width="20" />
+            <span class="css-truncate">
+              <span class="css-truncate-target"><%= @username %></span>
+            </span>
+          </a>
+        </li>
+
+        <li class="header-nav-item dropdown js-menu-container">
+          <a class="header-nav-link js-menu-target tooltipped tooltipped-s" href="/new" aria-label="Create new..." data-ga-click="Header, create new, icon:add">
+            <span class="octicon octicon-plus"></span>
+            <span class="dropdown-caret"></span>
+          </a>
+          <div class="dropdown-menu-content js-menu-content">
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/new" data-ga-click="Header, create new repository, icon:repo"><span class="octicon octicon-repo"></span> New repository</a>
+              </li>
+              <li>
+                <a href="/organizations/new" data-ga-click="Header, create new organization, icon:organization"><span class="octicon octicon-organization"></span> New organization</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="header-nav-item">
+          <span class="js-socket-channel js-updatable-content"
+            data-channel="notification-changed:<%= @username %>"
+            data-url="/notifications/header">
+            <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+              <span class="mail-status all-read"></span>
+              <span class="octicon octicon-inbox"></span>
+            </a>
+          </span>
+        </li>
+
+        <li class="header-nav-item">
+          <a class="header-nav-link tooltipped tooltipped-s" href="/settings/profile" id="account_settings" aria-label="Settings" data-ga-click="Header, go to settings, icon:settings">
+            <span class="octicon octicon-gear"></span>
+          </a>
+        </li>
+
+        <li class="header-nav-item">
+          <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="MsH55CQYyh4VjYUR2YDFJsZ/uZ3fj+QiumRvgKOy6pVezf4szKyAVfMp10jLmUNyZCgHv1EBdUgrmzYP00Kjfg==" /></div>
+            <button class="header-nav-link sign-out-button tooltipped tooltipped-s" aria-label="Sign out" data-ga-click="Header, sign out, icon:logout">
+              <span class="octicon octicon-sign-out"></span>
+            </button>
+          </form>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div id="start-of-content" class="accessibility-aid"></div>
+  <div class="site clearfix" role="main">
+    <div id="site-container" class="context-loader-container" data-pjax-container>
+      <div class="container">
+        <div class="columns profilecols">
+          <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
+            <a href="/account" aria-label="Change your avatar" class="vcard-avatar tooltipped tooltipped-s"><img alt="" class="avatar" height="230" src="https://avatars3.githubusercontent.com/u/<%= @user_id %>?v=3&amp;s=460" width="230" /></a>
+            <h1 class="vcard-names">
+              <span class="vcard-fullname" itemprop="name"><%= @real_name %></span>
+              <span class="vcard-username" itemprop="additionalName"><%= @username %></span>
+            </h1>
+            <ul class="vcard-details">
+              <li class="vcard-detail"><span class="octicon octicon-clock"></span><span class="join-label">Joined on </span><time class="join-date" datetime="<%= @join_date %>" day="numeric" is="local-time" month="short" year="numeric"><%= @join_date.strftime("%b %e, %Y") %></time></li>
+            </ul>
+            <div class="vcard-stats">
+              <a class="vcard-stat" href="/<%= @username %>/followers">
+                <strong class="vcard-stat-count"><%= @followers %></strong>
+                <span class="text-muted">Followers</span>
+              </a>
+              <a class="vcard-stat" href="/stars">
+                <strong class="vcard-stat-count"><%= @starred %></strong>
+                <span class="text-muted">Starred</span>
+              </a>
+              <a class="vcard-stat" href="/<%= @username %>/following">
+                <strong class="vcard-stat-count"><%= @following %></strong>
+                <span class="text-muted">Following</span>
+              </a>
+            </div>
+            <div class="clearfix">
+              <h3>Organizations</h3>
+              <a href="/JohnSquared" aria-label="JohnSquared" class="tooltipped tooltipped-n avatar-group-item" itemprop="follows"><img alt="@JohnSquared" class="avatar" height="42" src="https://avatars3.githubusercontent.com/u/12532521?v=3&amp;s=84" width="42" /></a>
+              <a href="/NationalPublicSpotify" aria-label="NationalPublicSpotify" class="tooltipped tooltipped-n avatar-group-item" itemprop="follows"><img alt="@NationalPublicSpotify" class="avatar" height="42" src="https://avatars2.githubusercontent.com/u/12647752?v=3&amp;s=84" width="42" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop"></div>
+  </div>
+</div>

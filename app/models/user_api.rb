@@ -23,4 +23,37 @@ class UserApi
     @user_hash['name']
   end
 
+  def user_id
+    @user_hash['id']
+  end
+
+  def join_date
+    @user_hash['created_at']
+  end
+
+  def number_of_followers
+    followers_link = @user_hash['followers_url']
+    array = HTTParty.get("#{followers_link}",
+      headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
+                "User-Agent" => "jmbuscemi"})
+    array.count
+  end
+
+  def number_following
+    following_link = @user_hash['following_url']
+    array = HTTParty.get("#{following_link}",
+      headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
+                "User-Agent" => "jmbuscemi"})
+    array.count
+  end
+
+  def number_starred
+    starred_link = @user_hash['starred_url']
+    array = HTTParty.get("#{starred_link}",
+      headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
+                "User-Agent" => "jmbuscemi"})
+    array.count
+  end
+
+
 end
