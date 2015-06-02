@@ -2,6 +2,8 @@
 <p>Real Name = <%= @real_name %></p>
 <p>userid = <%= @user_id %></p>
 <p>day = <%= @join_date.strftime("%b %e, %Y")%></p>
+<p>company = <%= @company %></p>
+<p>location = <%= @location %></p>
 <p>followers = <%= @followers %></p>
 <p>following = <%= @following %></p>
 <p>starred = <%= @starred %></p>
@@ -109,6 +111,8 @@
               <span class="vcard-username" itemprop="additionalName"><%= @username %></span>
             </h1>
             <ul class="vcard-details">
+              <li class="vcard-detail" itemprop="worksFor" title="<%= @company %>"><span class="octicon octicon-organization"></span><%= @company %></li>
+              <li class="vcard-detail" itemprop="homeLocation" title="<%= @location %>"><span class="octicon octicon-location"></span><%= @location %></li>
               <li class="vcard-detail"><span class="octicon octicon-clock"></span><span class="join-label">Joined on </span><time class="join-date" datetime="<%= @join_date %>" day="numeric" is="local-time" month="short" year="numeric"><%= @join_date.strftime("%b %e, %Y") %></time></li>
             </ul>
             <div class="vcard-stats">

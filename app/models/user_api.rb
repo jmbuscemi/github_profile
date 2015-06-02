@@ -10,17 +10,33 @@ class UserApi
   def get_user_hash
     HTTParty.get("https://api.github.com/users/#{@username}",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
-                "User-Agent" => "jmbuscemi"})
+      "User-Agent" => "jmbuscemi"})
   end
 
   def get_repo_hash
     HTTParty.get("https://api.github.com/users/#{@username}/repos",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
-                "User-Agent" => "jmbuscemi"})
+      "User-Agent" => "jmbuscemi"})
   end
 
   def real_name
     @user_hash['name']
+  end
+
+  def company
+    if @user_hash['company'] == ""
+      "none"
+    else
+      @user_hash['company']
+    end
+  end
+
+  def location
+    if @user_hash['location'] == ""
+      "none"
+    else
+      @user_hash['location']
+    end
   end
 
   def user_id
