@@ -4,7 +4,7 @@ class UserApi
   def initialize(username)
     @username = username
     @user_hash = get_user_hash
-    @repo_hash = get_repo_hash
+    @repo_array = get_repo_array
   end
 
   def get_user_hash
@@ -13,7 +13,7 @@ class UserApi
       "User-Agent" => "jmbuscemi"})
   end
 
-  def get_repo_hash
+  def get_repo_array
     HTTParty.get("https://api.github.com/users/#{@username}/repos",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
       "User-Agent" => "jmbuscemi"})
@@ -52,7 +52,7 @@ class UserApi
   end
 
   def join_date
-    @user_hash['created_at']
+    @user_hash['created_at'].to_date
   end
 
   def number_of_followers
@@ -78,5 +78,30 @@ class UserApi
       "User-Agent" => "jmbuscemi"})
     array.count
   end
+
+  def repo_name
+    @repo_array[0]['name']
+  end
+
+  def repo_description
+    @repo_array[0]['description']
+  end
+
+  def repo_updated_at
+    @repo_array[0]['updated_at'].to_date
+  end
+
+  def repo_language
+    @repo_array[0]['language']
+  end
+
+  def repo_stargazers_count
+    @repo_array[0]['stargazers_count']
+  end
+
+  def repo_forks_count
+    @repo_array[0]['forks_count']
+  end
+
 
 end

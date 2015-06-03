@@ -9,7 +9,6 @@
 <p>following = <%= @following %></p>
 <p>starred = <%= @starred %></p>
 -->
-
 <div class="wrapper">
   <div class="header header-logged-in true" role="banner">
     <div class="container clearfix">
@@ -179,6 +178,34 @@
                     <input type="submit" value="Search" class="btn">
                   </form>
                 </div>
+                <ul class="repo-list js-repo-list" data-filterable-for="your-repos-filter" data-filterable-type="substring">
+                  <li class="repo-list-item public source">
+                    <div class="repo-list-stats">
+                      <%= @repo_language %>
+                      <a class="repo-list-stat-item tooltipped tooltipped-s" href="/<%= @username %>/<%= @repo_name %>/stargazers" aria-label="Stargazers">
+                        <span class="octicon octicon-star"></span>
+                        <%= @stargazers_count %>
+                      </a>
+                      <a class="repo-list-stat-item tooltipped tooltipped-s" href="/<%= @username %>/<%= @repo_name %>/network"  aria-label="Forks">
+                        <span class="octicon octicon-git-branch"></span>
+                        <%= @forks_count %>
+                      </a>
+                    </div>
+                    <h3 class="repo-list-name">
+                      <a href="/<%= @username %>/<%= @repo_name %>">
+                        <%= @repo_name %></a>
+                    </h3>
+                    <p class="repo-list-description">
+                      <%= @repo_description %>
+                    </p>
+                    <p class="repo-list-meta">
+                      Updated <time datetime="2015-06-02T17:38:33Z" is="relative-time">Jun 2, 2015</time>
+                    </p>
+                    <div class="participation-graph">
+                      <poll-include-fragment src="/<%= @username %>/<%= @repo_name %>/graphs/participation?h=80&amp;w=640"></poll-include-fragment>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
