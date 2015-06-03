@@ -10,6 +10,7 @@ class GithubProfileController < ApplicationController
     @user_id = user.user_id
     @company = user.company
     @location = user.location
+    @email = user.email
     @join_date = user.join_date.to_date
     @followers = user.number_of_followers
     @following = user.number_following

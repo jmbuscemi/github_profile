@@ -39,6 +39,14 @@ class UserApi
     end
   end
 
+  def email
+    if @user_hash['email'] == ""
+      "private"
+    else
+      @user_hash['email']
+    end
+  end
+
   def user_id
     @user_hash['id']
   end
@@ -51,7 +59,7 @@ class UserApi
     followers_link = @user_hash['followers_url']
     array = HTTParty.get("#{followers_link}",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
-                "User-Agent" => "jmbuscemi"})
+      "User-Agent" => "jmbuscemi"})
     array.count
   end
 
@@ -59,7 +67,7 @@ class UserApi
     following_link = @user_hash['following_url'].split("{")[0].to_s
     array = HTTParty.get("#{following_link}",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
-                "User-Agent" => "jmbuscemi"})
+      "User-Agent" => "jmbuscemi"})
     array.count
   end
 
@@ -67,9 +75,8 @@ class UserApi
     starred_link = @user_hash['starred_url'].split("{")[0].to_s
     array = HTTParty.get("#{starred_link}",
       headers: {"Authorization" => "token #{ENV['GITHUB_KEY']}",
-                "User-Agent" => "jmbuscemi"})
+      "User-Agent" => "jmbuscemi"})
     array.count
   end
-
 
 end

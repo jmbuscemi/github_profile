@@ -1,12 +1,14 @@
-<h1>Username =  <%= @username %></h1>
+<!--<h1>Username =  <%= @username %></h1>
 <p>Real Name = <%= @real_name %></p>
 <p>userid = <%= @user_id %></p>
 <p>day = <%= @join_date.strftime("%b %e, %Y")%></p>
 <p>company = <%= @company %></p>
 <p>location = <%= @location %></p>
+<p>email = <%= @email %></p>
 <p>followers = <%= @followers %></p>
 <p>following = <%= @following %></p>
 <p>starred = <%= @starred %></p>
+-->
 
 <div class="wrapper">
   <div class="header header-logged-in true" role="banner">
@@ -111,6 +113,9 @@
               <span class="vcard-username" itemprop="additionalName"><%= @username %></span>
             </h1>
             <ul class="vcard-details">
+              <li class="vcard-detail"><span class="octicon octicon-mail"></span>
+                <a class="email"><%= @email %></a>
+              </li>
               <li class="vcard-detail" itemprop="worksFor" title="<%= @company %>"><span class="octicon octicon-organization"></span><%= @company %></li>
               <li class="vcard-detail" itemprop="homeLocation" title="<%= @location %>"><span class="octicon octicon-location"></span><%= @location %></li>
               <li class="vcard-detail"><span class="octicon octicon-clock"></span><span class="join-label">Joined on </span><time class="join-date" datetime="<%= @join_date %>" day="numeric" is="local-time" month="short" year="numeric"><%= @join_date.strftime("%b %e, %Y") %></time></li>
@@ -129,15 +134,57 @@
                 <span class="text-muted">Following</span>
               </a>
             </div>
-            <div class="clearfix">
-              <h3>Organizations</h3>
-              <a href="/JohnSquared" aria-label="JohnSquared" class="tooltipped tooltipped-n avatar-group-item" itemprop="follows"><img alt="@JohnSquared" class="avatar" height="42" src="https://avatars3.githubusercontent.com/u/12532521?v=3&amp;s=84" width="42" /></a>
-              <a href="/NationalPublicSpotify" aria-label="NationalPublicSpotify" class="tooltipped tooltipped-n avatar-group-item" itemprop="follows"><img alt="@NationalPublicSpotify" class="avatar" height="42" src="https://avatars2.githubusercontent.com/u/12647752?v=3&amp;s=84" width="42" /></a>
+          </div>
+          <div class="column three-fourths">
+            <div class="tabnav">
+              <div class="right">
+                <a href="/account" class="btn btn-sm">
+                  <span class="octicon octicon-pencil"></span>
+                  Edit profile
+                </a>
+              </div>
+              <nav class="tabnav-tabs" data-pjax role="navigation">
+                <a href="/<%= @username %>" class="tabnav-tab ">
+                  <span class="octicon octicon-diff-added"></span>
+                  Contributions
+                </a>
+                <a href="/<%= @username %>?tab=repositories" class="tabnav-tab selected">
+                  <span class="octicon octicon-repo"></span>
+                  Repositories
+                </a>
+                <a href="/<%= @username %>?tab=activity" class="tabnav-tab ">
+                  <span class="octicon octicon-rss"></span>
+                  Public activity
+                </a>
+              </nav>
+            </div>
+            <div class="tab-content js-repo-filter">
+              <div class="repo-tab">
+                <div class="filter-bar">
+                  <a href="/new" class="btn btn-primary new-repo">
+                    <span class="octicon octicon-repo"></span>
+                    New
+                  </a>
+                  <ul class="repo_filterer">
+                    <li><a href="#" class="repo_filter js-repo-filter-tab" data-filter=".mirror">Mirrors</a></li>
+                    <li><a href="#" class="repo_filter js-repo-filter-tab" data-filter=".fork">Forks</a></li>
+                    <li><a href="#" class="repo_filter js-repo-filter-tab" data-filter=".source">Sources</a></li>
+                    <li><a href="#" class="repo_filter js-repo-filter-tab" data-filter=".private">Private</a></li>
+                    <li><a href="#" class="repo_filter js-repo-filter-tab" data-filter=".public">Public</a></li>
+                    <li class="all_repos"><a href="#" class="repo_filter js-repo-filter-tab filter-selected" data-filter=".public, .private">All</a></li>
+                  </ul>
+                  <form accept-charset="UTF-8" action="/search" class="repo-search" method="get" role="search"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+                    <input type="hidden" name="user" value="<%= @username %>">
+                    <input type="text" id="your-repos-filter" name="q" class="filter_input js-filterable-field" placeholder="Find a repository&hellip;" tabindex="2">
+                    <input type="submit" value="Search" class="btn">
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal-backdrop"></div>
   </div>
+  <div class="modal-backdrop"></div>
 </div>
