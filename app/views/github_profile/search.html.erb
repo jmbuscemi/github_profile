@@ -3,7 +3,7 @@
 </div>
 
 <div>
-  <%= form_tag("github_profile/show", method: "get") do %>
+  <%= form_tag(github_profile_display_path, method: "post") do %>
     <div class="input">
       <%= text_field_tag "username", nil, placeholder: "Enter Username" %>
     </div>

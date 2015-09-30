@@ -1,5 +1,5 @@
 class UserApi
-  attr_reader :username
+  attr_reader :username, :repo_array
 
   def initialize(username)
     @username = username
@@ -79,29 +79,29 @@ class UserApi
     array.count
   end
 
-  def repo_name
-    @repo_array[0]['name']
-  end
-
-  def repo_description
-    @repo_array[0]['description']
-  end
-
-  def repo_updated_at
-    @repo_array[0]['updated_at'].to_date
-  end
-
-  def repo_language
-    @repo_array[0]['language']
-  end
-
-  def repo_stargazers_count
-    @repo_array[0]['stargazers_count']
-  end
-
-  def repo_forks_count
-    @repo_array[0]['forks_count']
-  end
+  # def repo_name
+  #   ['name']
+  # end
+  #
+  # def repo_description
+  #   ['description']
+  # end
+  #
+  # def repo_updated_at
+  #   ['updated_at'].to_date
+  # end
+  #
+  # def repo_language
+  #   ['language']
+  # end
+  #
+  # def repo_stargazers_count
+  #   ['stargazers_count']
+  # end
+  #
+  # def repo_forks_count
+  #   ['forks_count']
+  # end
 
 
 end

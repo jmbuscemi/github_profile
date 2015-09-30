@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'github_profile#index'
+  root 'github_profile#search'
 
-  get 'github_profile/index'
+  get 'github_profile/search'
 
-  get 'github_profile/show'
+  post 'github_profile/display'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
